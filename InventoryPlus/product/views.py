@@ -24,6 +24,7 @@ def delete_products_view(request:HttpRequest, product_id: int):
 
     return redirect("product:all_products_view")
 
+
 def add_products_view(request: HttpRequest):
     products = Product.objects.all()
     category = Category.objects.all()
