@@ -8,6 +8,7 @@ from django.core.paginator import Paginator
 from django.contrib import messages
 
 
+
 def dashboard_view(request:HttpRequest):
     if request.user.is_authenticated:
         print(request.user.username)

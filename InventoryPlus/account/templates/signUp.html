@@ -6,8 +6,16 @@
     <h2>Sign Up</h2>
     <form class="d-flex flex-column gap-3 w-50" action="{% url 'account:sign_up' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        
-    
+        {% if messages %}
+
+        {% for message in messages %}
+        <div class="alert {{message.tags}} alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+        {% endif %}
+
         <div class="form-floating">
         <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" required>
         <label for="floatingInput">Email address</label>
@@ -34,6 +42,25 @@
         </div>
 
         <button class="btn btn-primary w-100 py-2" type="submit">Sign up</button>
+        <div class="text-center">
+            <p>Already have account? <a href="{% url 'account:sign_in'%}">Sign In</a></p>
+            <p>or sign up with:</p>
+            <button  data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
+            <i class="fab fa-facebook-f"></i>
+            </button>
+
+            <button  data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
+            <i class="fab fa-google"></i>
+            </button>
+
+            <button  data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
+            <i class="fab fa-twitter"></i>
+            </button>
+
+            <button  data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
+            <i class="fab fa-github"></i>
+            </button>
+        </div>
       </form>
 </div>
 {%endblock%}

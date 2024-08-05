@@ -5,14 +5,17 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
-
+@login_required(login_url="{% url 'account:sign_in'%}")
 def all_Categories_view(request: HttpRequest):
     category = Category.objects.all()
     return render(request , "allCategory.html" , {"categories": category})
 
 def add_Category_view(request: HttpRequest):
+    if not request.user.is_staff:
+        messages.add_message(request, "Sorry, Only Staff who has the access to this page.")
     category = Category.objects.all()
     if request.method == "POST":
         new_Category = Category(name=request.POST['name'], description=request.POST['description'])

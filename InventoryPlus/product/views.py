@@ -7,12 +7,19 @@ from django.contrib import messages
 
 
 def all_products_view(request:HttpRequest ):
+    if not request.user.is_authenticated:
+        messages.error(request,"Only registered users can access")
+        return redirect("account:sign_in")
+    
     products = Product.objects.all()
     category = Category.objects.all()
     allSuppliers = Supplier.objects.all() 
     return render(request, "allProducts.html", {"products":products,"categories":category,"suppliers": allSuppliers})
 
 def delete_products_view(request:HttpRequest, product_id: int):
+    if not request.user.is_authenticated:
+        messages.error(request,"Only registered users can access")
+        return redirect("account:sign_in")
     try:
         product = Product.objects.get(id=product_id) # implement feedback messages
         # raise Exception('filed ')
@@ -26,6 +33,9 @@ def delete_products_view(request:HttpRequest, product_id: int):
 
 
 def add_products_view(request: HttpRequest):
+    if not request.user.is_authenticated:
+        messages.error(request,"Only registered users can access")
+        return redirect("account:sign_in")
     products = Product.objects.all()
     category = Category.objects.all()
     allSuppliers = Supplier.objects.all() 
@@ -45,6 +55,10 @@ def add_products_view(request: HttpRequest):
     return render(request, "addProducts.html",  {"products": products,"categories":category,"suppliers": allSuppliers})
 
 def update_products_view(request:HttpRequest, product_id:int):
+    if not request.user.is_authenticated:
+        messages.error(request,"Only registered users can access")
+        return redirect("account:sign_in")
+    
     products = Product.objects.get(id=product_id)
     if request.method == "POST":
         category_id = request.POST['category']
