@@ -5,7 +5,7 @@ The project name is `Inventory Plus` . A comprehensive system to manage inventor
 
 ## Unified Modeling Language (UML)
 
-![alt text](<InventoryPlus/media/Inventory ERD.png>)
+![alt text](<Inventory ERD.png>)
 
 ##  Wireframe
 blueprint of project: https://www.figma.com/design/40QBM6suNYA48PaPZ3PPdf/Inventory-Management-system?node-id=0-1&t=rl76guga7VaTpt40-1

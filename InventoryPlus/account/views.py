@@ -69,10 +69,8 @@ def log_out(request:HttpRequest):
 
 
 def profile_view(request:HttpRequest, user_name):
-        
     try:
         user = User.objects.get(username=user_name)
-        profile= Profile.objects.get(username=user_name)
         if not Profile.objects.filter(user=user).first():
             new_profile = Profile(user=user)
             new_profile.save()
@@ -80,6 +78,6 @@ def profile_view(request:HttpRequest, user_name):
         #profile = Profile.objects.get(user=user)
     except Exception as e:
         print(e)
-        # return render(request,'404.html')
+        return render(request,'404.html')
     
-    return render(request,"profile.html",{"user":user, "profile":profile})
+    return render(request,"profile.html")
